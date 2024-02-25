@@ -23,14 +23,27 @@ docker-compose.yml
 
 Создайте образы и поднимите контейнеры:
 
+```sh
 $ docker compose up --build
-API
-Получение выражения по его идентификатору
-Request
+```
+
+## API
+
+### Получение выражения по его идентификатору
+
+#### Request
+
+```http
 GET http://localhost:8080/expression?id=1
-Parameter	Type	Description
-id	int	Required. идентификатор выражения
-Response
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `id` | `int` | **Required**. идентификатор выражения |
+
+#### Response
+
+```javascript
 {
     "ID": 1,
     "Expression": "2+2*2",
@@ -39,19 +52,40 @@ Response
     "CreatedAt": "2024-02-16T17:48:15.446296Z",
     "EvaluatedAt": "2024-02-16T17:48:15.450403Z"
 }
-Добавление вычисления арифметического выражения
-Request
+```
+
+### Добавление вычисления арифметического выражения
+
+#### Request
+
+```http
 POST http://localhost:8080/expression
+```
+
+```javascript
 {
     "expression": "2+2*2"
 }
-Response
+```
+
+#### Response
+
+```
 Приняли к обработке
 id: 1
-Получение списка выражений со статусами
-Request
+```
+
+### Получение списка выражений со статусами
+
+#### Request
+
+```http
 GET http://localhost:8080/expressions
-Response
+```
+
+#### Response
+
+```javascript
 [
     {
         "ID": 1,
@@ -70,10 +104,19 @@ Response
         "EvaluatedAt": "2024-02-16T17:52:01.052477Z"
     }
 ]
-Получение списка доступных операций со временем их выполения
-Request
+```
+
+### Получение списка доступных операций со временем их выполения
+
+#### Request
+
+```http
 GET http://localhost:8080/operations
-Response
+```
+
+#### Response
+
+```javascript
 [
     {
         "operator": "+",
@@ -92,12 +135,22 @@ Response
         "execution_time": 10
     }
 ]
-Настройка времени выполения операций
-Request
+```
+
+### Настройка времени выполения операций
+
+#### Request
+
+```http
 POST http://localhost:8080/operations
+```
+
+```javascript
 {
     "add_time": 10,
     "sub_time": 10,
     "mul_time": 10,
     "div_time": 10
 }
+```
+
